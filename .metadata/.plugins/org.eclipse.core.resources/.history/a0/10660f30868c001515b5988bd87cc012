@@ -1,0 +1,102 @@
+package in.edu.ssn.sase.hw09.Qestion3;
+
+public class MultipleStackArray {
+    int arr[];   // Array of size n to store actual content to be stored in stacks
+    int top[];   // Array of size k to store indexes of top elements of stacks
+    int next[];  // Array of size n to store next entry in all stacks
+                // and free list
+    int n, k;
+    int free; // To store beginning index of free list
+    
+    // A utility function to check if there is space available
+    public MultipleStackArray(int noOfStack, int arraySize) {
+    	
+    	// Initialize n and k, and allocate memory for all arrays
+        k = noOfStack;
+        n = arraySize;
+        arr = new int[n];
+        top = new int[k];
+        next = new int[n];
+     
+        // Initialize all stacks as empty
+        for (int i = 0; i < k; i++)
+            top[i] = -1;
+     
+        // Initialize all spaces as free
+        free = 0;
+        for (int i=0; i<n-1; i++)
+            next[i] = i+1;
+        next[n-1] = -1;  // -1 is used to indicate end of free list       
+}
+    
+    boolean isFull()   {  return (free == -1);  }
+    
+   
+ 
+    // To check whether stack number 'stackNumber' is empty or not
+    boolean isEmpty(int sn)  {  return (top[sn] == -1); }
+ 
+
+public synchronized void push(int data, int stackNumber){
+	
+	 // Overflow check
+    if (isFull())
+    {
+    	System.out.println("Stack Overflow");
+        return;
+    }
+ 
+    int i = free;      // Store index of first free slot
+ 
+    // Update index of free slot to index of next slot in free list
+    free = next[i];
+ 
+    // Update next of top and then top for stack number 'stackNumber'
+    next[i] = top[stackNumber];
+    top[stackNumber] = i;
+ 
+    // Put the item in array
+    arr[i] = data;
+    System.out.println("Data "+ data +" pushed into stack" + stackNumber);
+ }
+
+public synchronized void pop(int stackNumber){
+	
+	// Underflow check
+    if (isEmpty(stackNumber))
+    {
+    	System.out.println("Stack Underflow");
+       //  return Integer.MAX_VALUE;
+    }
+ 
+ 
+    // Find index of top item in stack number 'stackNumber'
+    int i = top[stackNumber];
+ 
+    top[stackNumber] = next[i];  // Change top to store next of previous top
+ 
+    // Attach the previous top to the beginning of free list
+    next[i] = free;
+    free = i;
+ 
+    System.out.println("Data "+  arr[i] + " popped from stack" + stackNumber);
+}
+
+
+public static void main(String[] args) {     
+	
+	MultipleStackArray arrayStack = new MultipleStackArray(2,7);
+ 
+	arrayStack.push(22, 1);
+	arrayStack.push(23, 1);
+	arrayStack.push(24, 1);
+
+	arrayStack.push(31, 0);
+	arrayStack.push(32, 0);
+	arrayStack.push(33, 0);
+    
+	arrayStack.pop(0);
+	arrayStack.pop(1);
+    
+ }
+}

@@ -1,0 +1,9 @@
+package in.edu.ssn.sase.FCS.LinkedList;
+
+public class CheckLList {
+
+	public static void main(String[] args) {
+		LinkedList<Integer> list=new LinkedList<Integer>()
+	}
+
+}

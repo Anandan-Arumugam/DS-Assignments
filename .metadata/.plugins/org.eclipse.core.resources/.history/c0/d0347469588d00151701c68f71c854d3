@@ -1,0 +1,15 @@
+package com.anandan;
+
+public class Test {
+
+	public class Human{
+		public void goShopping(){
+			System.out.println("Depends on Male/Female");
+		}
+	}
+	public class Male extends Human{
+		public void goShopping(){
+			System.out.println("Takes minutes");
+		}
+	}
+}

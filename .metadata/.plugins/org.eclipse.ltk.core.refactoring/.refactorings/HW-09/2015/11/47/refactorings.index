@@ -1,0 +1,8 @@
+1447650413503	Encapsulate field 'data'
+1447653492457	Encapsulate field 'node'
+1447655992471	Encapsulate field 'deleted'
+1447666626527	Rename compilation unit 'DoubleComparator.java'
+1447669295784	Delete element
+1447669377778	Rename package 'in.edu.ssn.sase.FCS.hw09'
+1448034617926	Move compilation unit
+1448047956044	Rename type 'LinkedList'

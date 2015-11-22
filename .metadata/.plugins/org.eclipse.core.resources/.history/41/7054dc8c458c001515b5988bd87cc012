@@ -1,0 +1,13 @@
+package in.edu.ssn.sase.FCS.hw09;
+
+import java.util.Comparator;
+
+public class DoubleComparator implements Comparator<Double>{
+
+	@Override
+	public int compare(Double arg0, Double arg1) {
+		
+		return 0;
+	}
+
+}

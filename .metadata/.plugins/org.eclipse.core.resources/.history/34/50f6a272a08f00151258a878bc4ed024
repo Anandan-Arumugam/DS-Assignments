@@ -1,0 +1,10 @@
+package in.edu.ssn.sase.FCS.LinkedList;
+
+public class CheckLList {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

@@ -1,0 +1,35 @@
+package in.edu.ssn.sase.FCS.hw09.Question1;
+
+import java.util.Stack;
+
+public class ListCheck {
+
+	public static void main(String[] args) {
+		
+		SelfAdjustingList<String> list=new SelfAdjustingList<String>(String.class,5);
+		list.insert("Anand");
+		list.insert("Gerrard");
+		list.insert("Scholes");
+		list.insert("Rooney");
+		list.insert("Messi");
+		System.out.println("List :");
+		list.printList();
+		list.locate("Messi");
+		System.out.println("After Locate");
+		list.printList();
+		list.locate("Gerrard");
+		System.out.println("After Locate :");
+		list.printList();
+		list.next(2);
+		list.delete(1);
+		list.delete(0);
+		list.delete(3);
+		System.out.println("After Delete :");
+		list.printList();
+		list.purge();
+		System.out.println("After Purge : ");
+		list.printList();
+		
+	}
+
+}

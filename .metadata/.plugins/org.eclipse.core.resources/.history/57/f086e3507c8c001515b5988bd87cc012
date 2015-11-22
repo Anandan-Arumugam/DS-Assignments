@@ -1,0 +1,80 @@
+
+public class CircularQueue {
+
+	int[] queue;
+	int queueSize;
+	int head;
+	int tail;
+
+	public CircularQueue(int queueSize) {
+		this.queueSize = queueSize + 1;
+		queue = new int[queueSize + 1];
+		head = -1;
+		tail = -1;
+	}
+
+	public synchronized void enQueue(int data) {
+		if (head == -1) {
+			queue[0] = data;
+			head = 0;
+			tail = 0;
+		} else if (isFull()) {
+			System.out.println("Queue full. Cannot enter more");
+		} else {
+			tail = (tail + 1) % queueSize;
+			queue[tail] = data;
+		}
+
+	}
+
+	public synchronized void deQueue() {
+		if (isEmpty()) {
+			System.out.println("Queue is empty");
+		} else {
+			queue[head] = -1;
+			head = (head + 1) % queueSize;
+		}
+	}
+	
+	public void print(){
+		if(isEmpty()){
+			System.out.println("Queue empty");
+			return;
+		}
+		for(int i = head; i<= tail; i++){
+			System.out.print(queue[i]);
+		}
+	}
+
+	public boolean isEmpty() {
+		if (head == -1) {
+			return true;
+		} else if (head == (tail + 1) % queueSize) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public boolean isFull() {
+		if (head == (tail + 2) % queueSize) {
+			return true;
+		}
+		return false;
+	}
+
+	public static void main(String[] args) {
+		CircularQueue circularQueue = new CircularQueue(2);
+		circularQueue.enQueue(1);
+		circularQueue.enQueue(2);
+		circularQueue.print();
+		circularQueue.deQueue();
+		circularQueue.enQueue(3);
+		circularQueue.print();
+		circularQueue.deQueue();
+		circularQueue.deQueue();
+		circularQueue.deQueue();
+
+	}
+
+}

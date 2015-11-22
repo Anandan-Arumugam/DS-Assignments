@@ -1,0 +1,102 @@
+package in.edu.ssn.sase.FCS.LinkedList;
+
+public class LinkedList<T> {
+	private Node<T> head;
+	private Node<T> position;
+	public LinkedList() {
+		head=new Node<T>(null);
+		position=head;
+	}
+	public void add(T data) {
+		position=this.end();
+		if(this.locate(data)!=null)
+		{
+			System.out.println("Duplicate Data");
+		}
+		else
+		{
+			Node<T> thisNode=new Node<T>(data);
+			position.setNext(thisNode);
+			position=thisNode;
+		}
+	}
+	public Node<T> begin(){
+		return head;
+	}
+	public Node<T> end(){
+		position=this.begin();
+		while(position.getNext()!=null)
+		{
+			position=position.getNext();
+		}
+		return position;
+	}
+	public Node<T> locate(T data){
+		position=this.begin();
+		while(position.getNext()!=null)
+		{
+			if(position.getNext().getData()==data)
+			{
+				return position;
+			}
+			else
+				position=position.getNext();
+		}
+		return null;
+	}
+	public void addNext(T FindData,T InsertData)
+	{
+		position=locate(FindData).getNext();
+		if(position.getNext()==null)
+		{
+			this.add(InsertData);
+		}
+		else
+		{
+			Node<T> temp=position.getNext();
+			this.add(InsertData);
+			position.setNext(temp);
+		}
+	}
+	public void delete(T data){
+		position=locate(data);
+		position.getNext().setDeleted(true);
+	}
+	public void purge(){
+		position=this.begin();
+		while(position.getNext()!=null){
+			if(position.getNext().isDeleted==true){
+				position.setNext(position.getNext().getNext());
+			}
+			else
+				position=position.getNext();
+		}
+	}
+	public void addPrevious(T FindData,T InsertData)
+	{
+		position=locate(FindData);
+		if(position.getNext()==null)
+		{
+			this.add(InsertData);
+		}
+		else
+		{
+			Node<T> temp=position.getNext();
+			System.out.println("here");
+			this.add(InsertData);
+			System.out.println("here");
+			position.setNext(temp);
+		}
+	}
+	public void printList(){
+		position=this.begin();
+		System.out.print("[ ");
+		while(position.getNext()!=null)
+		{
+			System.out.print(position.getNext().getData()+" ");
+			position=position.getNext();
+		}
+		System.out.println("]");
+	}
+
+}

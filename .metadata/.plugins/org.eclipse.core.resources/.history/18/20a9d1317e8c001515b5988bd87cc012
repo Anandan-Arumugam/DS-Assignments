@@ -1,0 +1,10 @@
+package in.edu.ssn.sase.FCS.hw09.Question2;
+
+public class QueueCheck {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

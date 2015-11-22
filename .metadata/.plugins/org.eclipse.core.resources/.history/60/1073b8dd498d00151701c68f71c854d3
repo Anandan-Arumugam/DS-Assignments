@@ -1,0 +1,24 @@
+package com.anandan;
+
+public class Test {
+	
+	class A {
+		A me() {
+			return this;
+		}
+	 
+		public void doA() {
+			System.out.println("Do A");
+		}
+	}
+	 
+	class B extends A {
+		public void doB() {
+			System.out.println("Do B");
+		}
+	}
+	public static void main(String[] args) {
+		System.out.println((B) new B().me().doA());
+	}
+
+}

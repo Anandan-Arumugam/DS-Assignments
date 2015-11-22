@@ -1,0 +1,8 @@
+package com.anandan;
+
+public class TestHuman {
+
+	public void goShopping(){
+		System.out.println("Depends on Male/Female");
+	};
+}

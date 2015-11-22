@@ -1,0 +1,164 @@
+package in.edu.ssn.sase.FCS.hw09.Question1;
+
+import java.lang.reflect.Array;
+import java.util.Arrays;
+import java.util.Comparator;
+
+public class SelfAdjustingList<T extends Comparable<T>> implements Comparator<T> {
+
+	private static int Capacity;
+	private static int length;
+	private static int current;
+	private T[] elements;
+	private boolean[] isDeleted;
+	boolean isFull;
+
+	public boolean isFull() {
+		return isFull;
+	}
+
+	public void setFull(boolean isFull) {
+		this.isFull = isFull;
+	}
+
+	public SelfAdjustingList(Class<T> type){
+
+		isFull=false;
+		Capacity=1000;
+		current=Capacity-1;
+		length=0;
+		elements = (T[])Array.newInstance(type, Capacity);
+		isDeleted = new boolean[Capacity];
+		Arrays.fill(isDeleted, Boolean.FALSE);
+	}
+
+	public SelfAdjustingList (Class<T> type, int length){
+
+		current=length-1;
+		isFull=false;
+		Capacity=length; 
+		elements = (T[])Array.newInstance(type, Capacity);
+		this.length=length;
+		isDeleted = new boolean[length];
+		Arrays.fill(isDeleted, Boolean.FALSE);
+
+	}
+	public int getLength() {
+		return length;
+	}
+	public void setLength(int length) {
+		this.length = length;
+	}
+	public int end(){
+		return Capacity;
+	}
+	public int begin(){
+		return Capacity-length;
+	}
+	public int next(int Position){
+		if(Position+1 > this.end()||Position +1 < this.begin()){
+			return -1;
+		}
+		else 
+			return Position+1;
+	}
+	public int previous(int Position){
+		if(Position+1 > this.end()||Position +1 < this.begin()){
+			return -1;
+		}
+		else 
+			return Position-1;
+	}
+	public synchronized void locate(T element){
+
+		int Position=this.begin();
+		while(Position<Capacity)
+		{
+			if(this.compare(elements[current], element)==0)
+			{
+				T temp=elements[current];
+				for (int k=current;k>(Capacity-length);k--)
+				{
+					elements[k]=elements[k-1];
+				}
+				elements[Capacity-length]=temp;
+			}
+			current++;
+		}
+	}
+	public T retrieve(int Position){
+		current=Capacity-length+Position;
+		return elements[current];
+
+	}
+	public synchronized void insert(T element){
+
+		if(!(this.isFull()))
+		{
+			
+		}
+		else
+			System.out.println("List is Full");
+	}
+
+	public synchronized void delete(int Position){
+		current=Capacity-length+Position;
+		if(current<Capacity)
+			isDeleted[current]=true;
+	}
+	public synchronized void purge(){
+
+		current=Capacity-length;
+		int deleteCount=0;
+		while(current<Capacity)
+		{
+			while(isDeleted[current])
+			{
+				for(int k=current;k<Capacity-1;k++)
+				{
+					elements[k]=elements[k+1];
+					isDeleted[k]=isDeleted[k+1];
+				}
+				deleteCount++;
+			}
+			current++;
+		}
+		Capacity=Capacity-deleteCount;
+		length=length-deleteCount;
+		System.out.println(Capacity);
+	}
+	private boolean areAllFalse(boolean[] isDeleted2, int capacity2) {
+		int i=0;
+		while(i>Capacity)
+		{
+			if(isDeleted[Capacity-1]==true){
+				return false;
+			}
+			i++;
+		}
+		return true;
+	}
+
+	public void printList(){
+
+		current=Capacity-length;
+		System.out.print("[");
+		while (current<Capacity)
+		{
+			System.out.print(elements[current]+" ");
+			current++;
+		}
+		System.out.println("]");
+	}
+
+	public boolean isEmpty(){
+		if(length==0)
+			return true;
+		else
+			return  false;
+	}
+	@Override
+	public int compare(T a, T b) {
+		return a.compareTo(b);
+	}
+}

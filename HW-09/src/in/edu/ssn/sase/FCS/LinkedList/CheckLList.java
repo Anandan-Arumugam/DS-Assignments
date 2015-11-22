@@ -1,0 +1,31 @@
+package in.edu.ssn.sase.FCS.LinkedList;
+
+public class CheckLList {
+
+	public static void main(String[] args) {
+		LinkedList_Original<Integer> list=new LinkedList_Original<Integer>();
+		list.add(10);
+		list.add(20);
+		list.add(30);
+		list.addNext(10,40);
+		list.addPrevious(20, 40);
+		System.out.println("List: ");
+		list.printList();
+		list.delete(40);
+		list.delete(10);
+		list.add(50);
+		System.out.println("List After Delete:");
+		list.printList();
+		System.out.println("List After Purge");
+		list.purge();
+		list.printList();
+		list.add(60);
+		list.printList();
+		list.delete(20);
+		list.purge();
+//		list.printList();
+		list.add(50);
+		list.printList();
+	}
+
+}

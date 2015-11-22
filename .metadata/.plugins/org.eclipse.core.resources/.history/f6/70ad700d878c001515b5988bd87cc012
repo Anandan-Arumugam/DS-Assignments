@@ -1,0 +1,10 @@
+package in.edu.ssn.sase.hw09.Qestion3;
+
+public class CheckMultiStack {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

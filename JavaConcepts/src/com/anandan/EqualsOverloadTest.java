@@ -1,0 +1,36 @@
+package com.anandan;
+
+import java.util.HashSet;
+import java.util.Set;
+
+public class EqualsOverloadTest {
+
+	  String id;
+
+	  public EqualsOverloadTest(String id){
+	    this.id = id;
+	  }
+
+	  public boolean equals(EqualsOverloadTest other){
+		 return (other!=null) && this.id.equals(other.id);
+	  }
+
+	  public int hashCode() {
+	    return id.hashCode();
+	  }
+	  
+	  public static void main(String[] args) {
+		  EqualsOverloadTest first = new EqualsOverloadTest("123");
+		  EqualsOverloadTest second =
+		  new EqualsOverloadTest(new String("123"));
+
+		  System.out.println(first.equals(second));
+
+		  Set set = new HashSet();
+		  set.add(first);
+		  set.add(second);
+		  set.add(second);
+		  System.out.println(set.size());
+		  }
+
+	}

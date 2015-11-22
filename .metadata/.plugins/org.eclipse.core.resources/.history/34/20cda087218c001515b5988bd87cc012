@@ -1,0 +1,33 @@
+package in.edu.ssn.sase.FCS.hw09;
+
+public class Node {
+
+	private int data;
+	private Node next;
+	private boolean head;
+	private boolean tail;
+	public int getData() {
+		return data;
+	}
+	public Node getNext() {
+		return next;
+	}
+	public void setNext(Node next) {
+		this.next = next;
+	}
+	public boolean isHead() {
+		return head;
+	}
+	public void setHead(boolean head) {
+		this.head = head;
+	}
+	public boolean isTail() {
+		return tail;
+	}
+	public void setTail(boolean tail) {
+		this.tail = tail;
+	}
+	public void setData(int data) {
+		this.data = data;
+	}
+}

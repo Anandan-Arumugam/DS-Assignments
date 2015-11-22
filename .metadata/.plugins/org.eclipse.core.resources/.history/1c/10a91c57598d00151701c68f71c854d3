@@ -1,0 +1,31 @@
+package com.anandan;
+
+public class Test {
+
+	public class Human{
+		public void goShopping(Human a){
+			System.out.println("Depends on Male/Female");
+		}
+	}
+	public class Male extends Human{
+		@Override
+		public void goShopping(Human a){
+			System.out.println("Takes minutes");
+		}
+	}
+	public class Female extends Human{
+		public void goShopping(Female a){
+			System.out.println("Takes Years");
+		}
+	}
+	
+	public static void main(String[] args) {
+		Test t = new Test();
+		Human anand=t.new Male();
+		Human she=t.new Female();
+		Female lucy=t.new Female();
+		she.goShopping(lucy);
+		
+		
+	}
+}
