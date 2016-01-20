@@ -1,0 +1,12 @@
+package com.sorting.anandan;
+
+public class CheckSort {
+
+	public static void main(String[] args) {
+		
+		int []Array={'3','2','6','1'};
+		Sort insertionSorting = new Sort(Array);
+		insertionSorting.insertionSort();
+	}
+
+}

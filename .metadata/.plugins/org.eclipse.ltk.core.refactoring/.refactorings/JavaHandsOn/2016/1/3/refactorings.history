@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Encapsulate field &apos;com.sorting.anandan.Sort.numArray&apos; in &apos;com.sorting.anandan.Sort&apos;&#x0A;- Original project: &apos;JavaBasics&apos;&#x0A;- Original element: &apos;com.sorting.anandan.Sort.numArray&apos;&#x0A;- Getter method name: &apos;getNumArray&apos;&#x0A;- Setter method name: &apos;setNumArray&apos;&#x0A;- Field visibility: &apos;public&apos;&#x0A;- Use getter and setter methods in declaring type" comments="false" declaring="true" description="Encapsulate field &apos;numArray&apos;" flags="589830" getter="getNumArray" id="org.eclipse.jdt.ui.self.encapsulate" input="/src&lt;com.sorting.anandan{Sort.java[Sort^numArray" insertion="1" setter="setNumArray" stamp="1452593355495" version="1.0" visibility="1"/>
+</session>

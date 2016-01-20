@@ -1,0 +1,30 @@
+package com.anandan;
+
+public class ParserNode {
+	private char token;
+	private ParserNode LeftTree;
+	private ParserNode rightTree;
+	public ParserNode(char token) {
+		this.setToken(token);
+		LeftTree =null;
+		rightTree=null;
+	}
+	public ParserNode getLeftTree() {
+		return LeftTree;
+	}
+	public void setLeftTree(ParserNode leftTree) {
+		LeftTree = leftTree;
+	}
+	public ParserNode getRightTree() {
+		return rightTree;
+	}
+	public void setRightTree(ParserNode rightTree) {
+		this.rightTree = rightTree;
+	}
+	public char getToken() {
+		return token;
+	}
+	public void setToken(char token) {
+		this.token = token;
+	}
+}

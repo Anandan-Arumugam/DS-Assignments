@@ -1,0 +1,17 @@
+package com.graphs.anandan;
+
+import java.util.ArrayList;
+
+public class Graph {
+	
+	private Vertex vertices[];
+	private int vertexCount;
+//	private ArrayList<Integer> edges;
+	private int edgeWeightMatrix[][];
+	
+	public Graph(int n){
+		vertexCount=n;
+		vertices=new Vertex[vertexCount];
+	}
+
+}

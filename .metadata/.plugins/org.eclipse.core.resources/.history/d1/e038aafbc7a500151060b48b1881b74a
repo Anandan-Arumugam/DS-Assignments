@@ -1,0 +1,25 @@
+package com.anandan;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class PTreeTest {
+
+	/**
+	 * @param args
+	 * @throws IOException 
+	 */
+	public static void main(String[] args) throws IOException {
+		
+		BufferedReader Input = new BufferedReader (new InputStreamReader(System.in));
+		System.out.println("Enter Expression : ");
+		String InputToken=Input.readLine();
+		ParseTree ptree=new ParseTree(InputToken);
+		ptree.convertToParseTree();
+		ptree.printExpression();
+		ptree.evaluateExpression();
+//		ptree.postFixLoop();
+//		ptree.inOrderLoop();
+	}
+}

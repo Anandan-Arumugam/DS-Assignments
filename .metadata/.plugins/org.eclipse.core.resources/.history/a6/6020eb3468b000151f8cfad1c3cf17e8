@@ -1,0 +1,54 @@
+package com.graphs.anandan;
+
+import java.util.ArrayList;
+import java.util.Stack;
+
+public class Graph {
+	
+	private ArrayList<Vertex> vertices;
+	private int vertexCount;
+//	private ArrayList<Integer> edges;
+	private int edgeWeightMatrix[][];
+	
+	public Graph(int n){
+		vertexCount=n;
+		vertices=new ArrayList<Vertex>(vertexCount);
+		for(int i=0;i<vertexCount;i++){
+			for(int j=0;j<vertexCount;j++){
+				edgeWeightMatrix[i][j]=0;
+			}
+		}
+	}
+	
+	public void addVertex(char label){
+		Vertex newVertex=new Vertex(label);
+		vertices.add(newVertex);
+	}
+	
+	public void addEdge(char source, char destination, int weight){
+		int i=getVertexIndex(source);
+		int j=getVertexIndex(destination);
+		edgeWeightMatrix[i][j]=weight;
+	}
+
+	private int getVertexIndex(char source) {
+		int i=0;
+		while (vertices.get(i).getLabel()==source){
+			i++;
+		}
+		return i;
+	}
+	
+	public void depthFirstSearch(){
+		Stack<Character> vertexLabel=new Stack<Character>();
+		Stack<int[]> sumLabel=new Stack<int[]>();
+		int i=0;
+		vertexLabel.push(vertices.get(i).getLabel());
+		while (vertexLabel.isEmpty()){
+			if(!(vertices.get(getVertexIndex(vertexLabel.peek())).isVisited())){
+				
+			}
+		}
+	}
+
+}

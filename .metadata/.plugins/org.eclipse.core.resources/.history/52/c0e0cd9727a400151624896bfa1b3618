@@ -1,0 +1,10 @@
+package in.edu.ssn.sase.FCS.BinaryTree;
+
+public class CheckBinaryTree {
+
+	public static void main(String[] args) {
+		
+
+	}
+
+}

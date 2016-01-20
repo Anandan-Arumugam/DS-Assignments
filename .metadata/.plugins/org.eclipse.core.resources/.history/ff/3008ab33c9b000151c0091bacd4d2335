@@ -1,0 +1,74 @@
+package com.graphs.anandan;
+
+import java.util.ArrayList;
+import java.util.Stack;
+
+public class Graph {
+	
+	private ArrayList<Vertex> vertices;
+	private int vertexCount;
+	private int [][] edgeWeightMatrix;
+	
+	public Graph(int n){
+		vertexCount=n;
+		vertices=new ArrayList<Vertex>(vertexCount);
+		edgeWeightMatrix = new int[vertexCount][vertexCount];
+		for(int i=0;i<vertexCount;i++){
+			for(int j=0;j<vertexCount;j++){
+				edgeWeightMatrix[i][j]=0;
+			}
+		}
+	}
+	
+	public void addVertex(char label){
+		Vertex newVertex=new Vertex(label);
+		vertices.add(newVertex);
+	}
+	
+	public void addEdge(char source, char destination, int weight){
+		int i=getVertexIndex(source);
+		int j=getVertexIndex(destination);
+		edgeWeightMatrix[i][j]=weight;
+	}
+
+	private int getVertexIndex(char lab) {
+		int i=0;
+		while (vertices.get(i).getLabel()==lab){
+			i++;
+		}
+		return i;
+	}
+	
+	public void depthFirstSearch(){
+		Stack<Character> vertexLabel=new Stack<Character>();
+		vertexLabel.push(vertices.get(0).getLabel());
+		vertices.get(0).setVisited(true);
+		System.out.println(vertices.get(0).getLabel());
+		while (!vertexLabel.isEmpty()){
+			int i=getVertexIndex(vertexLabel.peek());
+			int adjacent=getAdjacent(i);
+			System.out.println(adjacent);
+			if(adjacent==-1){
+				vertexLabel.pop();
+			}
+			else{
+				System.out.println(vertices.get(adjacent).getLabel());
+				vertices.get(adjacent).setVisited(true);
+				vertexLabel.push(vertices.get(adjacent).getLabel());
+			}
+		}
+	}
+
+	public int getAdjacent(int i) {
+		int j=0;
+		while(j<vertexCount){
+			if((edgeWeightMatrix[i][j]!=0) && (!(vertices.get(j).isVisited()))){
+				return j;
+			}
+			j++;
+			System.out.println(vertices.get(j).isVisited());
+		}
+		return -1;
+	}
+
+}

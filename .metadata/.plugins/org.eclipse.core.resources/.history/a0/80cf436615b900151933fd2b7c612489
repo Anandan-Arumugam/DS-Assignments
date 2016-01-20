@@ -1,0 +1,29 @@
+package com.sorting.anandan;
+
+public class Sort {
+	private int[] numArray;
+	
+	public Sort(int [] array){
+		setNumArray(array);
+	}
+	public void resetArray(int [] array) {
+		setNumArray(array);
+	}
+	public void insertionSort(){
+		for (int i=1;i<numArray.length;i++){
+			while(numArray[i-1]<numArray[i] && i>0){
+				int temp;
+				temp=numArray[i-1];
+				numArray[i-1]=numArray[i];
+				numArray[i]=temp;
+				i--;
+			}
+		}
+	}
+	public int[] getNumArray() {
+		return numArray;
+	}
+	public void setNumArray(int[] numArray) {
+		this.numArray = numArray;
+	}
+}

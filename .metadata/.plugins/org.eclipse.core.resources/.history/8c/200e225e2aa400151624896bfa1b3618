@@ -1,0 +1,232 @@
+package in.edu.ssn.sase.FCS.BinaryTree;
+
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Stack;
+
+public class BinaryTree {
+
+	private BinaryTreeNode root;
+
+	public BinaryTreeNode getRoot() {
+		return root;
+	}
+
+	public void setRoot(BinaryTreeNode root) {
+		this.root = root;
+	}
+
+	public void getPreOder(BinaryTreeNode node){
+		if(node!=null)
+		{
+			System.out.println(node.getData());
+			this.getPreOder(node.getLeftBTree());
+			this.getPreOder(node.getRightBTree());
+		}
+
+	}
+	public void getPostOrder(BinaryTreeNode node){
+		if(node!=null)
+		{
+			this.getPostOrder(node.getLeftBTree());
+			this.getPostOrder(node.getRightBTree());
+			System.out.print(node.getData()+" ");
+		}
+	}
+	public void inOrder(BinaryTreeNode node){
+		if(node!=null)
+		{
+			this.getPostOrder(node.getLeftBTree());
+			System.out.print(node.getData()+" ");
+			this.getPostOrder(node.getRightBTree());
+		}
+	}
+	public void getLevelOrder(BinaryTreeNode node){
+		if(node!=null)
+		{
+			if(node==root)
+			{
+				System.out.println(node.getData());
+			}
+			System.out.print(node.getLeftBTree().getData());
+			System.out.print(node.getRightBTree().getData());
+		}
+	}
+	public void getLevelOrder(){
+		Queue<BinaryTreeNode> nodes = new LinkedList<BinaryTreeNode>();
+		nodes.add(this.root);
+		while (nodes.isEmpty()){
+			if(nodes.peek().getLeftBTree()!=null)
+				nodes.add(nodes.peek().getLeftBTree());
+			if(nodes.peek().getRightBTree()!=null)
+				nodes.add(nodes.peek().getRightBTree());
+			System.out.print(nodes.poll().getData());
+		}
+	}
+	public void deleteRoot(){
+		BinaryTreeNode temp=root;
+		BinaryTreeNode previous=null;
+		temp=temp.getLeftBTree();
+		while(temp.getRightBTree()!=null){
+			previous=temp;
+			temp=temp.getRightBTree();
+		}
+		if(temp.getLeftBTree()!=null){
+			previous.setRightBTree(temp.getLeftBTree());
+		}
+		root=temp;
+	}
+	//	public void delete(BinaryTreeNode previous,BinaryTreeNode node){
+	//		BinaryTreeNode temp=node;
+	//		if(temp.getData()==nodeData){
+	//			this.deleteRoot();
+	//		}
+	//		while(temp.getLeftBTree()!=null){
+	//			previous=temp;
+	//			if(temp.getLeftBTree().getData()==nodeData){
+	//				
+	//			}
+	//		}
+	//	}
+	//	public void deleteNode(int nodeData){
+	//		BinaryTreeNode[] nodes=this.searchTree(nodeData, null, root);
+	//		if(nodes[1]!=null){
+	//			if(nodes[1]==root)
+	//			this.deleteRoot();
+	//		}
+	//		if(nodes[1]!=null){
+	//			this.delete(nodes[0],nodes[1]);
+	//		}
+	//	}
+
+	public void postFixLoop(){
+		Stack<BinaryTreeNode> nodes=new Stack<BinaryTreeNode>();
+		Queue<BinaryTreeNode> output=new LinkedList<BinaryTreeNode>();
+		nodes.add(this.root);
+		BinaryTreeNode lastAdded=null;
+		System.out.println();
+		while(!nodes.isEmpty()){
+			BinaryTreeNode thisNode=nodes.peek();
+			if(thisNode.getLeftBTree()!=null){
+				if(thisNode.getRightBTree()==lastAdded){
+					output.add(thisNode);
+					lastAdded=nodes.pop();
+				}
+				else{
+					if(thisNode.getRightBTree()!=null)
+					nodes.add(thisNode.getRightBTree());
+					if(thisNode.getLeftBTree()!=null)
+					nodes.add(thisNode.getLeftBTree());
+				}
+			}
+			else if(thisNode.getRightBTree()==null){
+				output.add(thisNode);
+				lastAdded=nodes.pop();
+			}
+			else{
+				nodes.add(thisNode.getRightBTree());
+			}
+		} 
+		for(BinaryTreeNode node:  output){
+			System.out.print(node.getData());
+		}
+		System.out.println();
+	}
+
+	public void inOrderLoop(){
+		Stack<BinaryTreeNode> nodes=new Stack<BinaryTreeNode>();
+		Queue<BinaryTreeNode> output=new LinkedList<BinaryTreeNode>();
+		nodes.add(root.getRightBTree());
+		nodes.add(root);
+		nodes.add(root.getLeftBTree());
+		BinaryTreeNode lastAdded=null;
+		while(!nodes.empty()){
+			BinaryTreeNode thisNode=nodes.pop();
+			if(thisNode.getLeftBTree()!=null){
+				if(thisNode.getLeftBTree()==lastAdded||thisNode==root){
+					output.add(thisNode);
+					lastAdded=thisNode;
+				}
+				else{
+					nodes.add(thisNode.getRightBTree());
+					nodes.add(thisNode);
+					nodes.add(thisNode.getLeftBTree());
+				}
+			}
+			else if(thisNode.getRightBTree()==null){
+				output.add(thisNode);
+				lastAdded=thisNode;
+			}
+			else{
+				nodes.add(thisNode.getRightBTree());
+				nodes.add(thisNode);
+			}
+		}
+		for(BinaryTreeNode node:  output){
+			System.out.print(node.getData());
+		}
+		System.out.println();
+	}
+
+	//	public void preOrderLoop(){
+	//		Stack<ParserNode> nodes=new Stack<ParserNode>();
+	//		Queue<ParserNode> output=new LinkedList<ParserNode>();
+	//		nodes.add(root);
+	//		ParserNode lastAdded=null;
+	//		while(!nodes.isEmpty()){
+	//			ParserNode thisNode=nodes.pop();
+	//			if(thisNode.getLeftTree()!=null){
+	//				output.add(thisNode);
+	//				nodes.add(thisNode.getRightTree());
+	//				nodes.add(thisNode.getLeftTree());
+	//			}
+	//			else if(thisNode)
+	//		}
+	//	}
+
+	public BinaryTreeNode[] searchTree(int nodeData,BinaryTreeNode previous, BinaryTreeNode node){
+		BinaryTreeNode[] results=null;
+		while(node!=null){
+			if(node.getData()==nodeData){
+				results[0]=previous;
+				results[1]=node;
+				return results;
+			}
+			this.searchTree(nodeData, node, node.getLeftBTree());
+			this.searchTree(nodeData, node, node.getRightBTree());
+		}
+		return null;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,61 @@
+package com.anandan;
+
+import java.util.Stack;
+
+public class ParseTree {
+	private Stack<ParserNode> parseTree;
+	private ParserNode root;
+	final char[] tokens; 
+	Stack<Character> Operators;
+	public ParseTree(String Input) {
+		this.parseTree=new Stack<ParserNode>();
+		tokens = Input.toCharArray();
+		Operators=new Stack<Character>();
+		root=null;
+	}
+	public void convertToParseTree(){
+		for (char token:tokens){
+			if((this.isOperator(token))){
+				Operators.add(token);
+			}
+			else{
+				ParserNode thisNode=new ParserNode(token);
+				parseTree.add(thisNode);
+			}
+		}
+		while (!Operators.isEmpty()){
+			ParserNode thisNode=new ParserNode(Operators.pop());
+			thisNode.setRightTree(parseTree.pop());
+			thisNode.setLeftTree(parseTree.pop());
+			parseTree.add(thisNode);
+			root=thisNode;
+		}
+	}
+	private boolean isOperator(char token) {
+		if(token=='*'|token=='+'|token=='-'|token=='/'|token=='^'){
+			return true;
+		}
+		return false;
+	}
+	public void printPostFixNotatin(ParserNode node) {
+		if(node!=null){
+			printPostFixNotatin(node.getLeftTree());
+			printPostFixNotatin(node.getRightTree());
+			System.out.print(node.getToken());
+		}
+	}
+	
+	public void getOpertator(){
+		for(char token : tokens){
+			
+		}
+	}
+	public void printExpression() {
+		printPostFixNotatin(root);
+		System.out.println();
+		System.out.println(root.getToken());
+		System.out.println(root.getLeftTree().getToken());
+		System.out.println(root.getRightTree().getToken());
+	}
+}
+

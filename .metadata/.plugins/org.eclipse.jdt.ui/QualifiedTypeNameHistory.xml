@@ -8,7 +8,6 @@
 <fullyQualifiedTypeName name="java.util.Comparator"/>
 <fullyQualifiedTypeName name="in.edu.ssn.sase.FCS.hw09.ElementComparator"/>
 <fullyQualifiedTypeName name="in.edu.ssn.sase.FCS.hw09.Question1.SelfAdjustingList"/>
-<fullyQualifiedTypeName name="java.util.Stack"/>
 <fullyQualifiedTypeName name="in.edu.ssn.sase.hw09.Qestion3.MultipleStackArray"/>
 <fullyQualifiedTypeName name="com.anandan.BindingAndOverloading"/>
 <fullyQualifiedTypeName name="org.omg.CORBA.Object"/>
@@ -18,5 +17,16 @@
 <fullyQualifiedTypeName name="java.lang.Override"/>
 <fullyQualifiedTypeName name="java.lang.LinkageError"/>
 <fullyQualifiedTypeName name="in.edu.ssn.sase.FCS.LinkedList.LinkedList"/>
+<fullyQualifiedTypeName name="in.edu.ssn.sase.FCS.BinaryTree.BinaryTreeNode"/>
+<fullyQualifiedTypeName name="com.anandan.BinaryTreeNode"/>
+<fullyQualifiedTypeName name="com.anandan.ParserNode"/>
+<fullyQualifiedTypeName name="com.anandan.HashTables.HashTable"/>
+<fullyQualifiedTypeName name="javax.swing.plaf.basic.BasicInternalFrameTitlePane.MaximizeAction"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="com.graphs.anandan.Vertex"/>
+<fullyQualifiedTypeName name="java.util.Stack"/>
+<fullyQualifiedTypeName name="java.util.Queue"/>
+<fullyQualifiedTypeName name="java.util.LinkedList"/>
+<fullyQualifiedTypeName name="java.lang.Character"/>
 <fullyQualifiedTypeName name="in.edu.ssn.sase.FCS.LinkedList.Node"/>
 </qualifiedTypeNameHistroy>

@@ -1,15 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.internal.QuickAccess">
-		<item value="747" key="dialogHeight"/>
-		<item value="1440" key="dialogWidth"/>
-		<list key="textEntries">
-		</list>
-		<list key="orderedElements">
-		</list>
+		<item value="1200" key="dialogWidth"/>
+		<item value="675" key="dialogHeight"/>
 		<list key="orderedProviders">
+			<item value="org.eclipse.ui.commands"/>
+			<item value="org.eclipse.ui.commands"/>
 		</list>
 		<list key="textArray">
+			<item value="java prop"/>
+			<item value="task f"/>
+			<item value="tas"/>
 		</list>
+		<list key="orderedElements">
+			<item value="org.eclipse.jdt.ui.specific_content_assist.command(org.eclipse.jdt.ui.specific_content_assist.category_id=org.eclipse.mylyn.java.ui.javaAllProposalCategory)"/>
+			<item value="org.eclipse.mylyn.context.ui.commands.toggle.focus.active.view"/>
+		</list>
+		<list key="textEntries">
+			<item value="1"/>
+			<item value="2"/>
+		</list>
+	</section>
+	<section name="WorkbenchPreferenceDialogSettings">
+		<item value="0" key="DIALOG_Y_ORIGIN"/>
+		<item value="10" key="DIALOG_X_ORIGIN"/>
+	</section>
+	<section name="NewWizardAction">
+	</section>
+	<section name="ImportExportAction">
 	</section>
 </section>

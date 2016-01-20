@@ -1,0 +1,66 @@
+package in.edu.ssn.sase.FCS.BinaryTree;
+
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class BinaryTree {
+	
+	private BinaryTreeNode root;
+	
+	public BinaryTreeNode getRoot() {
+		return root;
+	}
+
+	public void setRoot(BinaryTreeNode root) {
+		this.root = root;
+	}
+	
+	public void getPreOder(BinaryTreeNode node){
+		if(node!=null)
+		{
+			System.out.println(node.getData());
+			this.getPreOder(node.getLeftBTree());
+			this.getPreOder(node.getRightBTree());
+		}
+		
+	}
+	public void getPostOrder(BinaryTreeNode node){
+		if(node!=null)
+		{
+			this.getPostOrder(node.getLeftBTree());
+			this.getPostOrder(node.getRightBTree());
+			System.out.println(node.getData());
+		}
+	}
+	public void inOrder(BinaryTreeNode node){
+		if(node!=null)
+		{
+			this.getPostOrder(node.getLeftBTree());
+			System.out.println(node.getData());
+			this.getPostOrder(node.getRightBTree());
+		}
+	}
+	public void getLevelOrder(BinaryTreeNode node){
+		if(node!=null)
+		{
+			if(node==root)
+			{
+				System.out.println(node.getData());
+			}
+			System.out.println(node.getLeftBTree().getData());
+			System.out.println(node.getRightBTree().getData());
+		}
+	}
+	public void getLevelOrder(){
+		Queue<BinaryTreeNode> nodes = new LinkedList<BinaryTreeNode>();
+		nodes.add(this.root);
+		while (nodes.isEmpty()){
+			if(nodes.peek().getLeftBTree()!=null)
+				nodes.add(nodes.peek().getLeftBTree());
+			if(nodes.peek().getRightBTree()!=null)
+				nodes.add(nodes.peek().getRightBTree());
+			System.out.println(nodes.poll().getData());
+		}
+	}
+	
+}

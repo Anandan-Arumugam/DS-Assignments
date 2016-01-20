@@ -1,0 +1,190 @@
+package com.anandan;
+
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Stack;
+
+public class ParseTree1 {
+	private Stack<ParserNode> parseTree;
+	private ParserNode root;
+	final char[] tokens; 
+	Stack<Character> Operators;
+	public ParseTree1(String Input) {
+		this.parseTree=new Stack<ParserNode>();
+		tokens = Input.toCharArray();
+		Operators=new Stack<Character>();
+		root=null;
+	}
+	public void convertToParseTree(){
+		int i=0;
+		while(i<tokens.length){
+			if((this.isOperator(tokens[i]))){
+				Operators.add(tokens[i]);
+				i++;
+			}
+			else if(tokens[i]=='('){
+				Operators.add(tokens[i]);
+				i++;
+			}
+			else if(tokens[i]=='s'){
+				if(tokens[i+1]=='u'){
+					if(tokens[i+2]=='m'){
+						i=constructUnaryOperatorNode(i+3);
+					}
+				}
+
+			}
+			else if(tokens[i]==')'){
+				if(Operators.isEmpty()){
+					System.out.println("Syntax error");
+					break;
+				}
+				else{
+					Operators.add(tokens[i]);
+					char thisOperator=Operators.pop();
+					while(!isOperator(thisOperator)){
+						thisOperator=Operators.pop();
+					}
+					if(Operators.pop()=='('){
+						ParserNode thisNode=new ParserNode(thisOperator);
+						thisNode.setRightTree(parseTree.pop());
+						thisNode.setLeftTree(parseTree.pop());
+						parseTree.add(thisNode);
+						root=thisNode;
+					}
+					else{
+						System.out.println("syntax error");
+						break;
+					}
+					i++;
+				}
+			}
+			else if(tokens[i]==' '){
+				i++;
+				continue;
+			}
+			else{
+				ParserNode thisNode=new ParserNode(tokens[i]);
+				parseTree.add(thisNode);
+				i++;
+			}
+		}
+	}
+	private int constructUnaryOperatorNode(int tokensCounter) {
+		int j=tokensCounter;
+		boolean start=false;
+		int startValue;
+		int endValue;
+		Stack<ParserNode> sumStack=new Stack<ParserNode>();
+		while(tokens[j]!='('){
+			if(tokens[j]==' '){
+				j++;
+				continue;
+			}
+			else if(tokens[j]==','){
+				j++;
+				continue;
+			}
+			else if(start){
+				startValue=tokens[j];
+			}
+			else{
+				endValue=tokens[j];
+			}
+		}
+		while (tokens[j]!='{'){
+		 if(tokens[j]=='('){
+				if((this.isOperator(tokens[j]))){
+					Operators.add(tokens[j]);
+					j++;
+				}
+				else if(tokens[j]=='('){
+					Operators.add(tokens[j]);
+					j++;
+				}
+				else if(tokens[j]=='s'){
+					if(tokens[j+1]=='u'){
+						if(tokens[j+2]=='m'){
+							j=constructUnaryOperatorNode(j+3);
+						}
+					}
+
+				}
+				else if(tokens[j]==')'){
+					if(Operators.isEmpty()){
+						System.out.println("Syntax error");
+						break;
+					}
+					else{
+						Operators.add(tokens[j]);
+						char thisOperator=Operators.pop();
+						while(!isOperator(thisOperator)){
+							thisOperator=Operators.pop();
+						}
+						if(Operators.pop()=='('){
+							ParserNode thisNode=new ParserNode(thisOperator);
+							thisNode.setRightTree(parseTree.pop());
+							thisNode.setLeftTree(parseTree.pop());
+							parseTree.add(thisNode);
+							root=thisNode;
+						}
+						else{
+							System.out.println("syntax error");
+							break;
+						}
+						j++;
+					}
+				}
+				else if(tokens[j]==' '){
+					j++;
+					continue;
+				}
+				else{
+					ParserNode thisNode=new ParserNode(tokens[j]);
+					parseTree.add(thisNode);
+					j++;
+				}
+			}
+			}
+		}	
+
+		return j;
+	}
+	private boolean isOperator(char token) {
+		if(token=='*'|token=='+'|token=='-'|token=='/'|token=='^'){
+			return true;
+		}
+		return false;
+	}
+	public void printPostFixNotatin(ParserNode node) {
+		if(node!=null){
+			printPostFixNotatin(node.getLeftTree());
+			printPostFixNotatin(node.getRightTree());
+			System.out.print(node.getToken());
+		}
+	}
+	public void printExpression() {
+		printPostFixNotatin(root);
+	}
+	public void evaluateExpression(){
+		System.out.println();
+		System.out.println(evaluateTree(root));
+	}
+	private Double evaluateTree(ParserNode node) {
+		switch (node.getToken()){
+		case '+':
+			return (evaluateTree(node.getLeftTree()) + evaluateTree(node.getRightTree()));
+		case '-':
+			return (evaluateTree(node.getLeftTree()) - evaluateTree(node.getRightTree()));
+		case '/':
+			return (evaluateTree(node.getLeftTree()) / evaluateTree(node.getRightTree()));
+		case '*':
+			return (evaluateTree(node.getLeftTree()) * evaluateTree(node.getRightTree()));
+		case '^':
+			return Math.pow(evaluateTree(node.getLeftTree()),evaluateTree(node.getRightTree()));
+		default:
+			return Double.valueOf(Character.toString(node.getToken()));
+		}
+	}
+}
+

@@ -1,0 +1,18 @@
+package com.sorting.anandan;
+
+public class Sort {
+	private int[] numArray;
+	
+	public Sort(int [] array){
+		setNumArray(array);
+	}
+	public void insertionSort(){
+		
+	}
+	public int[] getNumArray() {
+		return numArray;
+	}
+	public void setNumArray(int[] numArray) {
+		this.numArray = numArray;
+	}
+}

@@ -1,0 +1,17 @@
+package com.graphs.anandan;
+
+public class Vertex {
+	
+	private char label;
+	private boolean visited;
+	public Vertex(char lab){
+		setLabel(lab);
+		visited=false;
+	}
+	public char getLabel() {
+		return label;
+	}
+	public void setLabel(char label) {
+		this.label = label;
+	}
+}

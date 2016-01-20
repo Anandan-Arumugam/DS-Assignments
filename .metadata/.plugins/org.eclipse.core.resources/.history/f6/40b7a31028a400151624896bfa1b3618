@@ -1,0 +1,19 @@
+package in.edu.ssn.sase.FCS.BinaryTree;
+
+public class CheckBinaryTree {
+
+	public static void main(String[] args) {
+		
+		BinaryTree tree=new BinaryTree();
+		tree.setRoot(new BinaryTreeNode(2));
+		tree.getRoot().setLeftBTree(new BinaryTreeNode(7));
+		tree.getRoot().setRightBTree(new BinaryTreeNode(5));
+		tree.getRoot().getLeftBTree().setLeftBTree(new BinaryTreeNode(2));
+		tree.getRoot().getLeftBTree().setRightBTree(new BinaryTreeNode(6));
+		tree.getRoot().getLeftBTree().getLeftBTree().setLeftBTree(new BinaryTreeNode(5));
+		tree.getRoot().getLeftBTree().getLeftBTree().setRightBTree(new BinaryTreeNode(11));
+		tree.getRoot().getRightBTree().setRightBTree(new BinaryTreeNode(9));
+		tree.getRoot().getRightBTree().getRightBTree().setLeftBTree(new BinaryTreeNode(4));
+	}
+
+}

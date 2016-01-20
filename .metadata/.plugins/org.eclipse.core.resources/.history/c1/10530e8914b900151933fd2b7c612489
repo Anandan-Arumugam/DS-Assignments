@@ -1,0 +1,12 @@
+package com.sorting.anandan;
+
+public class Sort {
+	private int[] numArray;
+	
+	public Sort(int [] array){
+		numArray=array;
+	}
+	public void insertionSort(){
+		
+	}
+}
